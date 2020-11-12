@@ -396,6 +396,22 @@ namespace bitbot
         basic.pause(milliseconds);
         stop(BBStopMode.Coast);
     }
+     /**
+      * TEST FOR NY FUNKSJON?
+      */
+    //% blockId="BBGoms" block="go%direction|at speed%speed|\\% for%milliseconds|ms"
+    //% speed.min=0 speed.max=100
+    //% weight=90
+    //% subcategory=Motors
+    //% group="New style blocks"
+    //% blockGap=8
+    export function golel(direction: BBDirection, speed: number, milliseconds: number): void
+    {
+        go(direction, speed);
+        basic.pause(milliseconds);
+        stop(BBStopMode.Coast);
+    }
+ 
 
     /**
       * Rotate robot in direction at speed
