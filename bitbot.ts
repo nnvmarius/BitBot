@@ -399,7 +399,7 @@ namespace bitbot
      /**
       * TEST FOR NY FUNKSJON?
       */
-    //% blockId="BBGoms" block="go%direction|at speed%speed|\\% for%milliseconds|ms"
+    //% blockId="BBlel" block="go%direction|at speed%speed|\\% for%milliseconds|ms"
     //% speed.min=0 speed.max=100
     //% weight=90
     //% subcategory=Motors
