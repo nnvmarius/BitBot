@@ -531,14 +531,17 @@ namespace bitbot
         {
             if (direction == BBDirection.Forward)
             {
-                basic.pause(milliseconds);
                 pins.analogWritePin(lMotorA0, lSpeed);
                 pins.analogWritePin(lMotorA1, 0);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(lMotorA0, 0);
                 pins.analogWritePin(lMotorA1, lSpeed);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
         }
         if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
@@ -547,11 +550,15 @@ namespace bitbot
             {
                 pins.analogWritePin(rMotorA0, rSpeed);
                 pins.analogWritePin(rMotorA1, 0);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(rMotorA0, 0);
                 pins.analogWritePin(rMotorA1, rSpeed);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
         }
     }
