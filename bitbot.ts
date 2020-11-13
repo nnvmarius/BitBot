@@ -515,7 +515,7 @@ namespace bitbot
       * @param speed speed of motor between 0 and 100. eg: 60
       */
     //% blockId="BBMoveX" block="move%motor|motor(s)%direction|at speed%speed|\\% for%milliseconds|ms"
-    //% weight=80
+    //% weight=30
     //% speed.min=0 speed.max=100
     //% subcategory=Motors
     //% group="New style blocks"
@@ -564,13 +564,13 @@ namespace bitbot
     }
  
   /**
-      * Move individual motors forward or reverse
+      * Move individual motors, or together forward or reverse for a set time
       * @param motor motor to drive
       * @param direction select forwards or reverse
       * @param speed speed of motor between 0 and 100. eg: 60
       */
-    //% blockId="BBMovediff" block="move%motor|motor(s)%direction|at speed%speed|at speed%speedto|for%milliseconds|ms"
-    //% weight=80
+    //% blockId="BBMovediff" block="move%motor|motor(s)%direction|at speed%speed|\\% at speed%speedto|\\% for%milliseconds|ms"
+    //% weight=30
     //% speed.min=0 speed.max=100
     //% speedto.min=0 speed.max=100
     //% subcategory=Motors
