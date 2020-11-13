@@ -576,14 +576,15 @@ namespace bitbot
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
-    export function movediff(motor: BBMotor, direction: BBDirection, speed: number, speedto: number, milliseconds: number): void
+    export function movediff(motor: BBMotor, direction: BBDirection, speed: number, speedtwo: number, milliseconds: number): void
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
+        speedtwo = clamp(speed, 0, 100) * 10.23;
         setPWM(speed);
-        setPWM(speedto);
+        setPWM(speedtwo);
         let lSpeed = speed;
-        let rSpeed = speedto;
+        let rSpeed = speedtwo;
         if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
         {
             if (direction == BBDirection.Forward)
