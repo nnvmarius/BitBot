@@ -474,7 +474,7 @@ namespace bitbot
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
-    export function move(motor: BBMotor, direction: BBDirection, speed: number, milliseconds: number): void
+    export function move(motor: BBMotor, direction: BBDirection, speed: number): void
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
@@ -487,15 +487,11 @@ namespace bitbot
             {
                 pins.analogWritePin(lMotorA0, lSpeed);
                 pins.analogWritePin(lMotorA1, 0);
-                basic.pause(milliseconds);
-                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(lMotorA0, 0);
                 pins.analogWritePin(lMotorA1, lSpeed);
-                basic.pause(milliseconds);
-                stop(BBStopMode.Coast);
             }
         }
         if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
@@ -504,18 +500,62 @@ namespace bitbot
             {
                 pins.analogWritePin(rMotorA0, rSpeed);
                 pins.analogWritePin(rMotorA1, 0);
-                basic.pause(milliseconds);
-                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(rMotorA0, 0);
                 pins.analogWritePin(rMotorA1, rSpeed);
-                basic.pause(milliseconds);
-                stop(BBStopMode.Coast);
             }
         }
     }
+  /**
+      * Move individual motors forward or reverse
+      * @param motor motor to drive
+      * @param direction select forwards or reverse
+      * @param speed speed of motor between 0 and 100. eg: 60
+      */
+    //% blockId="BBMoveX" block="move%motor|motor(s)%direction|at speed%speed|\\% for%milliseconds|ms"
+    //% weight=55
+    //% speed.min=0 speed.max=100
+    //% subcategory=Motors
+    //% group="New style blocks"
+    //% blockGap=8
+    export function movex(motor: BBMotor, direction: BBDirection, speed: number, milliseconds: number): void
+    {
+        getModel();
+        speed = clamp(speed, 0, 100) * 10.23;
+        setPWM(speed);
+        let lSpeed = Math.round(speed * (100 - leftBias) / 100);
+        let rSpeed = Math.round(speed * (100 - rightBias) / 100);
+        if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
+        {
+            if (direction == BBDirection.Forward)
+            {
+                basic.pause(milliseconds);
+                pins.analogWritePin(lMotorA0, lSpeed);
+                pins.analogWritePin(lMotorA1, 0);
+            }
+            else
+            {
+                pins.analogWritePin(lMotorA0, 0);
+                pins.analogWritePin(lMotorA1, lSpeed);
+            }
+        }
+        if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
+        {
+            if (direction == BBDirection.Forward)
+            {
+                pins.analogWritePin(rMotorA0, rSpeed);
+                pins.analogWritePin(rMotorA1, 0);
+            }
+            else
+            {
+                pins.analogWritePin(rMotorA0, 0);
+                pins.analogWritePin(rMotorA1, rSpeed);
+            }
+        }
+    }
+ 
 
     /**
       * Set left/right bias to match motors
