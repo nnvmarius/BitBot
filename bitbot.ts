@@ -585,7 +585,7 @@ namespace bitbot
         setPWM(speedtwo);
         let lSpeed = speed;
         let rSpeed = speedtwo;
-        if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
+        if (motor == BBMotor.Left)
         {
             if (direction == BBDirection.Forward)
             {
@@ -602,7 +602,7 @@ namespace bitbot
                 stop(BBStopMode.Coast);
             }
         }
-        if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
+        if (motor == BBMotor.Right)
         {
             if (direction == BBDirection.Forward)
             {
@@ -619,9 +619,29 @@ namespace bitbot
                 stop(BBStopMode.Coast);
             }
         }
-    }
- 
-
+   
+        if (motor == BBMotor.Both)
+        {
+            if (direction == BBDirection.Forward)
+            {
+                pins.analogWritePin(lMotorA0, lSpeed);
+                pins.analogWritePin(lMotorA1, 0);
+                pins.analogWritePin(rMotorA0, rSpeed);
+                pins.analogWritePin(rMotorA1, 0);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
+            }
+            else
+            {
+                pins.analogWritePin(lMotorA0, 0);
+                pins.analogWritePin(lMotorA1, lSpeed);
+                pins.analogWritePin(rMotorA0, 0);
+                pins.analogWritePin(rMotorA1, rSpeed);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
+            }
+        }
+ }
     /**
       * Set left/right bias to match motors
       * @param direction direction to turn more (if robot goes right, set this to left)
