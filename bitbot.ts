@@ -569,19 +569,19 @@ namespace bitbot
       * @param direction select forwards or reverse
       * @param speed speed of motor between 0 and 100. eg: 60
       */
-    //% blockId="BBMovediff" block="move%motor|motor(s)%direction|at speed%speed|at speed%speed2|\\% for%milliseconds|ms"
+    //% blockId="BBMovediff" block="move%motor|motor(s)%direction|at speed%speed|at speedto%speed|\\% for%milliseconds|ms"
     //% weight=80
     //% speed.min=0 speed.max=100
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
-    export function movediff(motor: BBMotor, direction: BBDirection, speed: number, speed2: number, milliseconds: number): void
+    export function movediff(motor: BBMotor, direction: BBDirection, speed: number, speedto: number, milliseconds: number): void
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
         setPWM(speed);
         let lSpeed = Math.round(speed * (100 - leftBias) / 100);
-        let rSpeed = Math.round(speed2 * (100 - rightBias) / 100);
+        let rSpeed = Math.round(speedto * (100 - rightBias) / 100);
         if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
         {
             if (direction == BBDirection.Forward)
