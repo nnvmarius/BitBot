@@ -581,8 +581,9 @@ namespace bitbot
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
         setPWM(speed);
-        let lSpeed = Math.round(speed * (100 - leftBias) / 100);
-        let rSpeed = Math.round(speedto * (100 - rightBias) / 100);
+        setPWM(speedto);
+        let lSpeed = speed;
+        let rSpeed = speedto;
         if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
         {
             if (direction == BBDirection.Forward)
