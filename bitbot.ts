@@ -396,22 +396,6 @@ namespace bitbot
         basic.pause(milliseconds);
         stop(BBStopMode.Coast);
     }
-     /**
-      * TEST FOR NY FUNKSJON?
-      */
-    //% blockId="BBlel" block="go%direction|at speed%speed|\\% for%milliseconds|ms"
-    //% speed.min=0 speed.max=100
-    //% weight=90
-    //% subcategory=Motors
-    //% group="New style blocks"
-    //% blockGap=8
-    export function golel(direction: BBDirection, speed: number, milliseconds: number): void
-    {
-        go(direction, speed);
-        basic.pause(milliseconds);
-        stop(BBStopMode.Coast);
-    }
- 
 
     /**
       * Rotate robot in direction at speed
@@ -484,13 +468,13 @@ namespace bitbot
       * @param direction select forwards or reverse
       * @param speed speed of motor between 0 and 100. eg: 60
       */
-    //% blockId="BBMove" block="move%motor|motor(s)%direction|at speed%speed|\\%"
+    //% blockId="BBMovex" block="move%motor|motor(s)%direction|at speed%speed|\\%"
     //% weight=50
     //% speed.min=0 speed.max=100
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
-    export function move(motor: BBMotor, direction: BBDirection, speed: number): void
+    export function movex(motor: BBMotor, direction: BBDirection, speed: number, miliseconds: number): void
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
@@ -503,11 +487,15 @@ namespace bitbot
             {
                 pins.analogWritePin(lMotorA0, lSpeed);
                 pins.analogWritePin(lMotorA1, 0);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(lMotorA0, 0);
                 pins.analogWritePin(lMotorA1, lSpeed);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
         }
         if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
@@ -516,11 +504,15 @@ namespace bitbot
             {
                 pins.analogWritePin(rMotorA0, rSpeed);
                 pins.analogWritePin(rMotorA1, 0);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
             else
             {
                 pins.analogWritePin(rMotorA0, 0);
                 pins.analogWritePin(rMotorA1, rSpeed);
+                basic.pause(milliseconds);
+                stop(BBStopMode.Coast);
             }
         }
     }
