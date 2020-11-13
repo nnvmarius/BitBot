@@ -468,13 +468,13 @@ namespace bitbot
       * @param direction select forwards or reverse
       * @param speed speed of motor between 0 and 100. eg: 60
       */
-    //% blockId="BBMovex" block="move%motor|motor(s)%direction|at speed%speed|\\%"
+    //% blockId="BBMove" block="move%motor|motor(s)%direction|at speed%speed|\\%"
     //% weight=50
     //% speed.min=0 speed.max=100
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
-    export function movex(motor: BBMotor, direction: BBDirection, speed: number, miliseconds: number): void
+    export function move(motor: BBMotor, direction: BBDirection, speed: number, milliseconds: number): void
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
