@@ -573,7 +573,7 @@ namespace bitbot
     //% block="move%motor|motor(s)%direction|at speed%speed|\\% at speed%speedtwo|\\% for%milliseconds|ms"
     //% weight=30
     //% speed.min=0 speed.max=100
-    //% speedtwo.min=0 speed.max=100
+    //% speedtwo.min=0 speedtwo.max=100
     //% subcategory=Motors
     //% group="New style blocks"
     //% blockGap=8
@@ -581,7 +581,7 @@ namespace bitbot
     {
         getModel();
         speed = clamp(speed, 0, 100) * 10.23;
-        speedtwo = clamp(speed, 0, 100) * 10.23;
+        speedtwo = clamp(speedtwo, 0, 100) * 10.23;
         setPWM(speed);
         setPWM(speedtwo);
         let lSpeed = speed;
